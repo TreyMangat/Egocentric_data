@@ -1,0 +1,19 @@
+# Python environments and caches
+**/.venv/
+**/__pycache__/
+*.py[cod]
+
+# Credentials
+.env
+.env.*
+!.env.example
+.egoverse_env
+
+# Downloaded data and generated artifacts
+*.zarr/
+*.mp4
+*.ckpt
+**/data/raw/
+**/data/egoverse/
+**/outputs/
+**/wandb/

@@ -1,0 +1,32 @@
+{
+  "project": "folding-clothes-clips",
+  "source": "EgoVerse",
+  "selection_rule": "Project Aria folding-clothes episodes with RGB, intrinsics, head pose, both hand poses, and both MANO keypoint arrays",
+  "clip_duration_seconds": 8,
+  "episodes": [
+    {
+      "episode_hash": "2025-09-20-17-42-51-000000",
+      "reason": "Complete synchronized Aria episode from the first recording session",
+      "clip_id": "2025-09-20-17-42-51-000000_f001452-001692",
+      "start_frame": 1452,
+      "end_frame_exclusive": 1692,
+      "valid_hand_fraction": 1.0
+    },
+    {
+      "episode_hash": "2025-09-21-20-44-10-000000",
+      "reason": "Complete synchronized Aria episode from a different day",
+      "clip_id": "2025-09-21-20-44-10-000000_f001977-002217",
+      "start_frame": 1977,
+      "end_frame_exclusive": 2217,
+      "valid_hand_fraction": 1.0
+    },
+    {
+      "episode_hash": "2025-09-22-19-42-55-000000",
+      "reason": "Complete synchronized Aria episode from a third recording session",
+      "clip_id": "2025-09-22-19-42-55-000000_f000910-001150",
+      "start_frame": 910,
+      "end_frame_exclusive": 1150,
+      "valid_hand_fraction": 1.0
+    }
+  ]
+}
