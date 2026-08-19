@@ -24,6 +24,10 @@ _Avoid_: Class label
 A standardized answer such as `FOLD` that a model is trained to predict.
 _Avoid_: Raw annotation
 
+**Manual label**:
+A reviewer-chosen class and time range stored separately from the immutable raw annotation.
+_Avoid_: Corrected annotation
+
 **Training example**:
 One fixed-length input window paired with its correct class label.
 _Avoid_: Episode
@@ -59,10 +63,11 @@ _Avoid_: Robot rendering, kinematic playback
 - The first episode is local with RGB, wrist/hand/head poses, 21 keypoints per hand, annotations, and camera intrinsics.
 - `DEMOS/00_stage0_viewer` synchronizes video, graph playhead, completed trajectory, and active annotation.
 - `notes/00_stage0.md` records the small set of data-quality findings.
-- Raw annotations are multi-action free text; the model class vocabulary is still undecided.
+- Initial classes are `PICK_UP`, `PLACE`, `MOVE`, `FOLD`, `SMOOTH`, and `OTHER`.
+- Raw annotations remain immutable; manual labels will link time ranges to the already-aligned RGB and hand data.
 - Raw videos remain outside Git.
 - Long-term direction: recognition → kinematic retargeting → simulated task execution.
 
 ## Next Step
 
-Use the synchronized viewer to define and audit a small action vocabulary before training.
+Add persistent manual labeling to the synchronized viewer, then audit one episode before training.

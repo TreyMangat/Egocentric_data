@@ -5,4 +5,5 @@
 - Both wrists, hand end-effectors, 21 hand keypoints, head pose, and camera intrinsics are present.
 - Raw annotations can contain several actions; they are not yet model-ready class labels.
 - One episode has 10 embedded Zarr annotations but 17 current segment-table annotations; use the current table and record both counts.
-- Next decision: define observable boundaries for a small action vocabulary before training.
+- Agreed initial classes: `PICK_UP`, `PLACE`, `MOVE`, `FOLD`, `SMOOTH`, and `OTHER`.
+- Manual labels should preserve the raw annotation and reference synchronized episode timestamps.
