@@ -7,3 +7,5 @@
 - One episode has 10 embedded Zarr annotations but 17 current segment-table annotations; use the current table and record both counts.
 - Agreed initial classes: `PICK_UP`, `PLACE`, `MOVE`, `FOLD`, `SMOOTH`, and `OTHER`.
 - Manual labels should preserve the raw annotation and reference synchronized episode timestamps.
+- Text rules create 24 first-episode suggestions; all begin unreviewed, and estimated multi-action boundaries are uncertain.
+- The two automatic `OTHER` suggestions are proposed as `UNFOLD`, which can later become a class if review supports it.

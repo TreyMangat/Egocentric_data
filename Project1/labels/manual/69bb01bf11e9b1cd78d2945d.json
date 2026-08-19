@@ -1,0 +1,472 @@
+{
+  "schema_version": 1,
+  "episode_hash": "69bb01bf11e9b1cd78d2945d",
+  "fps": 30.0,
+  "frames": 2275,
+  "duration_seconds": 75.833333,
+  "class_labels": [
+    "PICK_UP",
+    "PLACE",
+    "MOVE",
+    "FOLD",
+    "SMOOTH",
+    "OTHER"
+  ],
+  "automatic_method": "annotation_text_rules_v1",
+  "created_at": "2026-08-19T05:26:51+00:00",
+  "updated_at": "2026-08-19T05:26:51+00:00",
+  "labels": [
+    {
+      "id": "auto-0-0",
+      "start_seconds": 0.0,
+      "end_seconds": 2.5,
+      "start_frame": 0,
+      "end_frame_exclusive": 75,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 0,
+      "raw_annotation": "pick up white garment, adjust white garment",
+      "suggestion_text": "pick up white garment",
+      "matched_terms": [
+        "pick up"
+      ]
+    },
+    {
+      "id": "auto-0-1",
+      "start_seconds": 2.5,
+      "end_seconds": 5.0,
+      "start_frame": 75,
+      "end_frame_exclusive": 150,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 0,
+      "raw_annotation": "pick up white garment, adjust white garment",
+      "suggestion_text": "adjust white garment",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-1-0",
+      "start_seconds": 5.0,
+      "end_seconds": 6.1,
+      "start_frame": 150,
+      "end_frame_exclusive": 183,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 1,
+      "raw_annotation": "place white garment on table",
+      "suggestion_text": "place white garment on table",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-2-0",
+      "start_seconds": 6.1,
+      "end_seconds": 12.5,
+      "start_frame": 183,
+      "end_frame_exclusive": 375,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 2,
+      "raw_annotation": "fold white garment",
+      "suggestion_text": "fold white garment",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-3-0",
+      "start_seconds": 12.5,
+      "end_seconds": 13.5,
+      "start_frame": 375,
+      "end_frame_exclusive": 405,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 3,
+      "raw_annotation": "move folded white garment on table",
+      "suggestion_text": "move folded white garment on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-4-0",
+      "start_seconds": 13.5,
+      "end_seconds": 15.2,
+      "start_frame": 405,
+      "end_frame_exclusive": 456,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 4,
+      "raw_annotation": "move white garment on table",
+      "suggestion_text": "move white garment on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-5-0",
+      "start_seconds": 15.2,
+      "end_seconds": 20.35,
+      "start_frame": 456,
+      "end_frame_exclusive": 610,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 5,
+      "raw_annotation": "spread white garment on table, fold white garment",
+      "suggestion_text": "spread white garment on table",
+      "matched_terms": [
+        "spread"
+      ]
+    },
+    {
+      "id": "auto-5-1",
+      "start_seconds": 20.35,
+      "end_seconds": 25.5,
+      "start_frame": 610,
+      "end_frame_exclusive": 765,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 5,
+      "raw_annotation": "spread white garment on table, fold white garment",
+      "suggestion_text": "fold white garment",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-6-0",
+      "start_seconds": 25.5,
+      "end_seconds": 26.5,
+      "start_frame": 765,
+      "end_frame_exclusive": 795,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 6,
+      "raw_annotation": "move folded white garment on table",
+      "suggestion_text": "move folded white garment on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-7-0",
+      "start_seconds": 26.5,
+      "end_seconds": 27.8,
+      "start_frame": 795,
+      "end_frame_exclusive": 834,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 7,
+      "raw_annotation": "move light gray garment on table",
+      "suggestion_text": "move light gray garment on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-8-0",
+      "start_seconds": 27.8,
+      "end_seconds": 33.3,
+      "start_frame": 834,
+      "end_frame_exclusive": 999,
+      "label": "OTHER",
+      "custom_label": "UNFOLD",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 8,
+      "raw_annotation": "unfold light gray garment",
+      "suggestion_text": "unfold light gray garment",
+      "matched_terms": []
+    },
+    {
+      "id": "auto-9-0",
+      "start_seconds": 33.3,
+      "end_seconds": 39.1,
+      "start_frame": 999,
+      "end_frame_exclusive": 1173,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 9,
+      "raw_annotation": "fold light gray garment",
+      "suggestion_text": "fold light gray garment",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-10-0",
+      "start_seconds": 39.1,
+      "end_seconds": 40.3,
+      "start_frame": 1173,
+      "end_frame_exclusive": 1209,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 10,
+      "raw_annotation": "move stack of garment on folded light gray garment",
+      "suggestion_text": "move stack of garment on folded light gray garment",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-11-0",
+      "start_seconds": 40.3,
+      "end_seconds": 42.0,
+      "start_frame": 1209,
+      "end_frame_exclusive": 1260,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 11,
+      "raw_annotation": "move stack of garments on table",
+      "suggestion_text": "move stack of garments on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-12-0",
+      "start_seconds": 42.0,
+      "end_seconds": 42.7,
+      "start_frame": 1260,
+      "end_frame_exclusive": 1281,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 12,
+      "raw_annotation": "pick up stack of garments, place gray garment on table",
+      "suggestion_text": "pick up stack of garments",
+      "matched_terms": [
+        "pick up"
+      ]
+    },
+    {
+      "id": "auto-12-1",
+      "start_seconds": 42.7,
+      "end_seconds": 43.4,
+      "start_frame": 1281,
+      "end_frame_exclusive": 1302,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 12,
+      "raw_annotation": "pick up stack of garments, place gray garment on table",
+      "suggestion_text": "place gray garment on table",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-13-0",
+      "start_seconds": 43.4,
+      "end_seconds": 46.4,
+      "start_frame": 1302,
+      "end_frame_exclusive": 1392,
+      "label": "OTHER",
+      "custom_label": "UNFOLD",
+      "active_hands": [],
+      "uncertain": true,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 13,
+      "raw_annotation": "unfold white garment",
+      "suggestion_text": "unfold white garment",
+      "matched_terms": []
+    },
+    {
+      "id": "auto-14-0",
+      "start_seconds": 46.4,
+      "end_seconds": 56.2,
+      "start_frame": 1392,
+      "end_frame_exclusive": 1686,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 14,
+      "raw_annotation": "fold white garment",
+      "suggestion_text": "fold white garment",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-15-0",
+      "start_seconds": 56.2,
+      "end_seconds": 57.9,
+      "start_frame": 1686,
+      "end_frame_exclusive": 1737,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 15,
+      "raw_annotation": "move folded white garment on stack of folded garments",
+      "suggestion_text": "move folded white garment on stack of folded garments",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-16-0",
+      "start_seconds": 57.9,
+      "end_seconds": 59.5,
+      "start_frame": 1737,
+      "end_frame_exclusive": 1785,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 16,
+      "raw_annotation": "move gray garment on table",
+      "suggestion_text": "move gray garment on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-17-0",
+      "start_seconds": 59.5,
+      "end_seconds": 62.3,
+      "start_frame": 1785,
+      "end_frame_exclusive": 1869,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 17,
+      "raw_annotation": "spread gray garment on table",
+      "suggestion_text": "spread gray garment on table",
+      "matched_terms": [
+        "spread"
+      ]
+    },
+    {
+      "id": "auto-18-0",
+      "start_seconds": 62.3,
+      "end_seconds": 72.0,
+      "start_frame": 1869,
+      "end_frame_exclusive": 2160,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 18,
+      "raw_annotation": "fold gray garment",
+      "suggestion_text": "fold gray garment",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-19-0",
+      "start_seconds": 72.0,
+      "end_seconds": 74.1,
+      "start_frame": 2160,
+      "end_frame_exclusive": 2223,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 19,
+      "raw_annotation": "move stack of garments on folded gray garment",
+      "suggestion_text": "move stack of garments on folded gray garment",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-20-0",
+      "start_seconds": 74.1,
+      "end_seconds": 75.8,
+      "start_frame": 2223,
+      "end_frame_exclusive": 2274,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "reviewed": false,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 20,
+      "raw_annotation": "pick up stack of garments",
+      "suggestion_text": "pick up stack of garments",
+      "matched_terms": [
+        "pick up"
+      ]
+    }
+  ]
+}

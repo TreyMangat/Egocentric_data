@@ -44,6 +44,18 @@ python inspect_episode.py `
 
 The graph playhead, completed trajectory, and active annotation follow the video in real time. Project results live in [`DEMOS`](./DEMOS/); short findings live in [`notes`](./notes/).
 
+## Assisted Labeling
+
+Start the local labeling server:
+
+```powershell
+python label_episode.py data/egoverse/stage0/episodes/69bb01bf11e9b1cd78d2945d
+```
+
+It converts raw annotation phrases into automatic suggestions using transparent text rules. These are not model predictions and remain unreviewed until you save or approve them. You can change the class or time range, name an `OTHER`, select active hands, mark uncertainty, or create a new interval.
+
+Edits are saved to [`labels/manual`](./labels/manual/) as Git-tracked JSON. Press `Ctrl+C` in the terminal to stop the server.
+
 ## Episode Bundle
 
 - `rgb.mp4` — first-person RGB video.
