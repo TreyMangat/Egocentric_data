@@ -31,10 +31,18 @@ The job refuses to save an episode unless video frames and measurement rows matc
 ```powershell
 New-Item -ItemType Directory -Force data/egoverse/stage0/episodes | Out-Null
 modal volume get egoverse-zarrs-v2 projects/action-recognition/stage0/episodes/69bb01bf11e9b1cd78d2945d data/egoverse/stage0/episodes --force
-python inspect_episode.py data/egoverse/stage0/episodes/69bb01bf11e9b1cd78d2945d --open
 ```
 
-The generated report lets you play the RGB video, view both wrist trajectories, and read each timestamped annotation.
+Create and open the synchronized Stage 0 demo:
+
+```powershell
+python inspect_episode.py `
+  data/egoverse/stage0/episodes/69bb01bf11e9b1cd78d2945d `
+  --output-dir DEMOS/00_stage0_viewer `
+  --open
+```
+
+The graph playhead, completed trajectory, and active annotation follow the video in real time. Project results live in [`DEMOS`](./DEMOS/); short findings live in [`notes`](./notes/).
 
 ## Episode Bundle
 

@@ -1,7 +1,6 @@
 duckdb==1.4.3
 imageio==2.37.0
 imageio-ffmpeg==0.6.0
-matplotlib==3.10.5
 modal==1.5.4
 numpy==2.3.2
 pillow==11.3.0

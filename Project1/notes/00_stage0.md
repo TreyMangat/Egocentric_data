@@ -1,0 +1,8 @@
+# Stage 0 Data Findings
+
+- Five folding-clothes episodes: 11,790 frames, 110 annotation segments, about 6.55 minutes.
+- Video frames and measurement rows align exactly at 30 FPS.
+- Both wrists, hand end-effectors, 21 hand keypoints, head pose, and camera intrinsics are present.
+- Raw annotations can contain several actions; they are not yet model-ready class labels.
+- One episode has 10 embedded Zarr annotations but 17 current segment-table annotations; use the current table and record both counts.
+- Next decision: define observable boundaries for a small action vocabulary before training.

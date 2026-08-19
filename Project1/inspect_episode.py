@@ -3,10 +3,10 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import shutil
 import webbrowser
 from pathlib import Path
 
-import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -18,73 +18,253 @@ def _xyz(array: np.ndarray) -> np.ndarray:
     raise ValueError(f"Cannot extract XYZ positions from shape {array.shape}")
 
 
-def _plot_wrist_trajectories(
-    measurements: dict[str, np.ndarray], annotations: list[dict], destination: Path
-) -> None:
-    times = measurements["time_seconds"]
-    left = _xyz(measurements["left.obs_wrist_pose"])
-    right = _xyz(measurements["right.obs_wrist_pose"])
-    colors = ("#0072B2", "#E69F00", "#009E73")
-
-    figure, axes = plt.subplots(2, 1, figsize=(12, 7), sharex=True)
-    for axis, values, side in zip(axes, (left, right), ("Left", "Right")):
-        for index, (coordinate, color) in enumerate(zip("XYZ", colors)):
-            axis.plot(times, values[:, index], color=color, label=coordinate, linewidth=1)
-        for segment in annotations[1:]:
-            axis.axvline(segment["start_seconds"], color="0.8", linewidth=0.5)
-        axis.set_ylabel(f"{side} wrist\nposition")
-        axis.grid(alpha=0.2)
-        axis.legend(loc="upper right", ncol=3)
-
-    axes[-1].set_xlabel("Seconds from the first RGB frame")
-    figure.suptitle("Wrist trajectories; gray lines are annotation boundaries")
-    figure.tight_layout()
-    figure.savefig(destination, dpi=150)
-    plt.close(figure)
+def _rounded_rows(array: np.ndarray) -> list[list[float]]:
+    return np.round(array.astype(np.float64), 5).tolist()
 
 
-def _write_report(
-    episode_dir: Path, metadata: dict, annotations: list[dict], destination: Path
-) -> None:
-    rows = "\n".join(
-        "<tr>"
-        f"<td>{segment['segment_index']}</td>"
-        f"<td>{segment['start_seconds']:.2f}</td>"
-        f"<td>{segment['end_seconds']:.2f}</td>"
-        f"<td>{html.escape(segment['label'])}</td>"
-        "</tr>"
-        for segment in annotations
+def _viewer_data(
+    metadata: dict, annotations: list[dict], measurements: dict[str, np.ndarray]
+) -> dict:
+    return {
+        "episode": {
+            "id": metadata["episode_hash"],
+            "task": metadata["task"],
+            "frames": metadata["frames"],
+            "fps": metadata["fps"],
+            "duration": metadata["duration_seconds"],
+            "frameSize": metadata["frame_size"],
+        },
+        "times": np.round(measurements["time_seconds"], 5).tolist(),
+        "poses": {
+            "wrist": {
+                "left": _rounded_rows(_xyz(measurements["left.obs_wrist_pose"])),
+                "right": _rounded_rows(_xyz(measurements["right.obs_wrist_pose"])),
+            },
+            "hand": {
+                "left": _rounded_rows(_xyz(measurements["left.obs_ee_pose"])),
+                "right": _rounded_rows(_xyz(measurements["right.obs_ee_pose"])),
+            },
+        },
+        "annotations": annotations,
+    }
+
+
+def _write_viewer(data: dict, destination: Path) -> None:
+    episode = data["episode"]
+    annotation_rows = "\n".join(
+        (
+            f'<button class="annotation-row" type="button" '
+            f'data-index="{segment["segment_index"]}" '
+            f'data-start="{segment["start_seconds"]}">'
+            f'<span>{segment["segment_index"] + 1}</span>'
+            f'<time>{segment["start_seconds"]:.2f}–{segment["end_seconds"]:.2f}s</time>'
+            f'<strong>{html.escape(segment["label"])}</strong>'
+            "</button>"
+        )
+        for segment in data["annotations"]
     )
+    serialized_data = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")
     document = f"""<!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
-<title>Stage 0 — {html.escape(metadata['episode_hash'])}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage 0 viewer — {html.escape(episode['id'])}</title>
 <style>
-body {{ font: 16px/1.45 system-ui, sans-serif; max-width: 1050px; margin: 2rem auto; padding: 0 1rem; }}
-video, img {{ width: 100%; border-radius: 8px; }}
-table {{ width: 100%; border-collapse: collapse; }}
-th, td {{ padding: .5rem; border-bottom: 1px solid #ddd; text-align: left; }}
-.facts {{ display: flex; gap: 2rem; flex-wrap: wrap; }}
+:root {{ color-scheme: light dark; --bg: #f7f7f5; --surface: #ffffff; --text: #181817; --muted: #666661; --border: #d9d9d3; --active: #fff1c7; --active-border: #d18b00; }}
+@media (prefers-color-scheme: dark) {{ :root {{ --bg: #151514; --surface: #20201e; --text: #f0f0ec; --muted: #aaa9a2; --border: #3b3b36; --active: #3b3018; --active-border: #f2b84b; }} }}
+* {{ box-sizing: border-box; }}
+body {{ margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, sans-serif; }}
+main {{ max-width: 1280px; margin: auto; padding: 24px; }}
+h1, h2, p {{ margin-top: 0; }}
+h1 {{ margin-bottom: 4px; font-size: clamp(22px, 3vw, 32px); }}
+h2 {{ margin: 28px 0 10px; font-size: 20px; }}
+.subtitle, .small {{ color: var(--muted); }}
+.layout {{ display: grid; grid-template-columns: minmax(280px, 0.8fr) minmax(420px, 1.2fr); gap: 20px; align-items: start; margin-top: 20px; }}
+.panel {{ background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }}
+video {{ width: 100%; display: block; background: #000; border-radius: 6px; }}
+.now {{ margin-top: 12px; padding-left: 10px; border-left: 4px solid var(--active-border); min-height: 58px; }}
+.now-label {{ display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }}
+#active-annotation {{ display: block; margin-top: 3px; }}
+.chart-toolbar {{ display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 8px; }}
+label {{ display: grid; gap: 4px; font-weight: 600; }}
+select {{ font: inherit; padding: 6px 28px 6px 8px; }}
+#time-display {{ font-variant-numeric: tabular-nums; color: var(--muted); }}
+.canvas-wrap {{ width: 100%; height: 430px; }}
+canvas {{ width: 100%; height: 100%; display: block; cursor: crosshair; }}
+.hint {{ margin: 8px 0 0; color: var(--muted); font-size: 13px; }}
+.annotations {{ display: grid; gap: 4px; }}
+.annotation-row {{ width: 100%; display: grid; grid-template-columns: 28px 130px 1fr; gap: 8px; align-items: start; border: 1px solid transparent; border-bottom-color: var(--border); background: transparent; color: var(--text); padding: 9px; text-align: left; font: inherit; cursor: pointer; }}
+.annotation-row time {{ color: var(--muted); font-variant-numeric: tabular-nums; }}
+.annotation-row strong {{ font-weight: 600; }}
+.annotation-row.active {{ background: var(--active); border-color: var(--active-border); border-radius: 6px; }}
+.annotation-row:hover {{ border-color: var(--active-border); border-radius: 6px; }}
+footer {{ margin-top: 28px; color: var(--muted); font-size: 13px; }}
+@media (max-width: 820px) {{ .layout {{ grid-template-columns: 1fr; }} .canvas-wrap {{ height: 390px; }} }}
+@media (max-width: 520px) {{ main {{ padding: 14px; }} .annotation-row {{ grid-template-columns: 24px 1fr; }} .annotation-row strong {{ grid-column: 2; }} .canvas-wrap {{ height: 350px; }} }}
 </style>
-<h1>Stage 0: one complete EgoVerse episode</h1>
-<div class="facts">
-  <p><strong>Task</strong><br>{html.escape(metadata['task'])}</p>
-  <p><strong>Frames</strong><br>{metadata['frames']:,}</p>
-  <p><strong>FPS</strong><br>{metadata['fps']:g}</p>
-  <p><strong>Annotations</strong><br>{metadata['annotation_segments']}</p>
-</div>
-<video controls preload="metadata" src="rgb.mp4"></video>
-<h2>Left and right wrist positions</h2>
-<img src="wrist_trajectory.png" alt="Wrist XYZ positions over time">
-<h2>Timestamped annotations</h2>
-<table><thead><tr><th>#</th><th>Start (s)</th><th>End (s)</th><th>Raw label</th></tr></thead>
-<tbody>{rows}</tbody></table>
+</head>
+<body>
+<main>
+  <h1>Stage 0 synchronized episode viewer</h1>
+  <p class="subtitle">{html.escape(episode['task'])} · {episode['frames']:,} frames · {episode['fps']:g} FPS · {episode['duration']:.2f}s</p>
+  <section class="layout">
+    <div class="panel">
+      <video id="episode-video" controls preload="metadata" src="rgb.mp4"></video>
+      <div class="now" aria-live="polite">
+        <span class="now-label">Active raw annotation</span>
+        <strong id="active-annotation">Loading…</strong>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="chart-toolbar">
+        <label>Tracked position
+          <select id="pose-select">
+            <option value="wrist">Wrist</option>
+            <option value="hand">Hand / end-effector</option>
+          </select>
+        </label>
+        <output id="time-display">0.00 / {episode['duration']:.2f}s</output>
+      </div>
+      <div class="canvas-wrap"><canvas id="trajectory-chart" role="img" aria-label="Left and right XYZ position trajectories synchronized to the video"></canvas></div>
+      <p class="hint">The strong trace is the motion already seen. Click the graph or an annotation to seek the video.</p>
+    </div>
+  </section>
+  <h2>Timestamped annotations</h2>
+  <div class="annotations" id="annotation-list">{annotation_rows}</div>
+  <footer>Source: EgoVerse · Episode {html.escape(episode['id'])} · CC BY-SA 4.0</footer>
+</main>
+<script>
+const DATA={serialized_data};
+const video=document.getElementById('episode-video');
+const canvas=document.getElementById('trajectory-chart');
+const context=canvas.getContext('2d');
+const poseSelect=document.getElementById('pose-select');
+const activeAnnotation=document.getElementById('active-annotation');
+const timeDisplay=document.getElementById('time-display');
+const annotationRows=[...document.querySelectorAll('.annotation-row')];
+const coordinates=['X','Y','Z'];
+const lightColors=['#0072b2','#d77b00','#00875a'];
+const darkColors=['#55b8ff','#ffb14e','#4bd6a0'];
+let animationFrame=null;
+
+function theme() {{
+  const dark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return {{
+    text:dark?'#f0f0ec':'#181817', muted:dark?'#aaa9a2':'#666661',
+    grid:dark?'#3b3b36':'#ddddda', boundary:dark?'#66665f':'#b8b8b2',
+    playhead:dark?'#ffd166':'#a85d00', colors:dark?darkColors:lightColors
+  }};
+}}
+
+function activeSegment(time) {{
+  return DATA.annotations.find(segment => time >= segment.start_seconds && time < segment.end_seconds)
+    || DATA.annotations.at(-1);
+}}
+
+function draw() {{
+  const ratio=window.devicePixelRatio || 1;
+  const width=Math.max(320,canvas.clientWidth);
+  const height=Math.max(300,canvas.clientHeight);
+  if(canvas.width!==Math.round(width*ratio) || canvas.height!==Math.round(height*ratio)) {{
+    canvas.width=Math.round(width*ratio); canvas.height=Math.round(height*ratio);
+  }}
+  context.setTransform(ratio,0,0,ratio,0,0);
+  context.clearRect(0,0,width,height);
+  const style=theme();
+  const left=58, right=14, top=28, bottom=30, gap=44;
+  const panelHeight=(height-top-bottom-gap)/2;
+  const plotWidth=width-left-right;
+  const duration=DATA.episode.duration;
+  const current=Math.min(video.currentTime || 0,duration);
+  const pose=DATA.poses[poseSelect.value];
+
+  ['left','right'].forEach((side,panelIndex) => {{
+    const values=pose[side];
+    const panelTop=top+panelIndex*(panelHeight+gap);
+    const flat=values.flat();
+    let min=Math.min(...flat), max=Math.max(...flat);
+    const padding=Math.max((max-min)*0.08,0.01); min-=padding; max+=padding;
+    const x=time => left+(time/duration)*plotWidth;
+    const y=value => panelTop+panelHeight-((value-min)/(max-min))*panelHeight;
+
+    context.strokeStyle=style.grid; context.lineWidth=1; context.fillStyle=style.muted;
+    context.font='12px system-ui'; context.textAlign='right'; context.textBaseline='middle';
+    for(let tick=0;tick<=4;tick++) {{
+      const value=min+(max-min)*tick/4; const py=y(value);
+      context.beginPath(); context.moveTo(left,py); context.lineTo(width-right,py); context.stroke();
+      context.fillText(value.toFixed(2),left-7,py);
+    }}
+    DATA.annotations.slice(1).forEach(segment => {{
+      const px=x(segment.start_seconds); context.strokeStyle=style.boundary; context.globalAlpha=.28;
+      context.beginPath(); context.moveTo(px,panelTop); context.lineTo(px,panelTop+panelHeight); context.stroke();
+    }});
+    context.globalAlpha=1;
+
+    function lineSeries(coordinate,strong) {{
+      context.strokeStyle=style.colors[coordinate]; context.lineWidth=strong?1.8:1;
+      context.globalAlpha=strong?1:.2; context.beginPath();
+      let started=false;
+      for(let index=0;index<values.length;index++) {{
+        if(strong && DATA.times[index]>current) break;
+        const px=x(DATA.times[index]), py=y(values[index][coordinate]);
+        if(!started) {{ context.moveTo(px,py); started=true; }} else context.lineTo(px,py);
+      }}
+      context.stroke(); context.globalAlpha=1;
+    }}
+    coordinates.forEach((_,index)=>lineSeries(index,false));
+    coordinates.forEach((_,index)=>lineSeries(index,true));
+
+    const playheadX=x(current); context.strokeStyle=style.playhead; context.lineWidth=2;
+    context.beginPath(); context.moveTo(playheadX,panelTop); context.lineTo(playheadX,panelTop+panelHeight); context.stroke();
+    context.fillStyle=style.text; context.textAlign='left'; context.textBaseline='bottom'; context.font='600 13px system-ui';
+    context.fillText(side==='left'?'Left':'Right',left,panelTop-7);
+  }});
+
+  const styleNow=theme(); context.font='12px system-ui'; context.textBaseline='middle';
+  coordinates.forEach((label,index)=>{{
+    const legendX=left+index*50; context.fillStyle=styleNow.colors[index]; context.fillRect(legendX,height-14,14,2);
+    context.fillStyle=styleNow.text; context.textAlign='left'; context.fillText(label,legendX+19,height-13);
+  }});
+  context.fillStyle=styleNow.muted; context.textAlign='right'; context.fillText('Time (seconds)',width-right,height-13);
+}}
+
+function update() {{
+  const time=video.currentTime || 0;
+  const segment=activeSegment(time);
+  activeAnnotation.textContent=segment.label;
+  timeDisplay.textContent=`${{time.toFixed(2)}} / ${{DATA.episode.duration.toFixed(2)}}s`;
+  annotationRows.forEach(row=>{{
+    const active=Number(row.dataset.index)===segment.segment_index;
+    row.classList.toggle('active',active);
+    if(active) row.setAttribute('aria-current','true'); else row.removeAttribute('aria-current');
+  }});
+  draw();
+}}
+
+function animate() {{ update(); if(!video.paused && !video.ended) animationFrame=requestAnimationFrame(animate); }}
+video.addEventListener('play',()=>{{ cancelAnimationFrame(animationFrame); animate(); }});
+['pause','seeked','timeupdate','loadedmetadata'].forEach(event=>video.addEventListener(event,update));
+poseSelect.addEventListener('change',draw);
+canvas.addEventListener('click',event=>{{
+  const bounds=canvas.getBoundingClientRect(); const left=58, right=14;
+  const fraction=Math.max(0,Math.min(1,(event.clientX-bounds.left-left)/(bounds.width-left-right)));
+  video.currentTime=fraction*DATA.episode.duration; update();
+}});
+annotationRows.forEach(row=>row.addEventListener('click',()=>{{ video.currentTime=Number(row.dataset.start); update(); }}));
+new ResizeObserver(draw).observe(canvas.parentElement);
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+update();
+</script>
+</body>
 </html>
 """
     destination.write_text(document, encoding="utf-8")
 
 
-def inspect_episode(episode_dir: Path, open_report: bool) -> None:
+def inspect_episode(
+    episode_dir: Path, output_dir: Path | None, open_report: bool
+) -> Path:
     required = ("rgb.mp4", "measurements.npz", "annotations.json", "metadata.json")
     missing = [name for name in required if not (episode_dir / name).is_file()]
     if missing:
@@ -96,38 +276,39 @@ def inspect_episode(episode_dir: Path, open_report: bool) -> None:
     with np.load(episode_dir / "measurements.npz") as archive:
         measurements = {key: archive[key] for key in archive.files}
 
-    _plot_wrist_trajectories(
-        measurements, annotations, episode_dir / "wrist_trajectory.png"
-    )
-    report_path = episode_dir / "episode_report.html"
-    _write_report(episode_dir, metadata, annotations, report_path)
+    destination_dir = output_dir or episode_dir
+    destination_dir.mkdir(parents=True, exist_ok=True)
+    report_path = destination_dir / ("index.html" if output_dir else "episode_report.html")
+    if destination_dir.resolve() != episode_dir.resolve():
+        shutil.copy2(episode_dir / "rgb.mp4", destination_dir / "rgb.mp4")
+    _write_viewer(_viewer_data(metadata, annotations, measurements), report_path)
 
     print(f"Episode: {metadata['episode_hash']}")
-    print(f"Task: {metadata['task']}")
     print(
         f"Video: {metadata['frames']} frames, {metadata['fps']:g} FPS, "
         f"{metadata['duration_seconds']:.2f} seconds"
     )
     print(f"Annotations: {len(annotations)} timestamped segments")
-    print("Measurements:")
-    for name, value in measurements.items():
-        print(f"  {name}: {list(value.shape)} {value.dtype}")
-    print(f"Report: {report_path.resolve()}")
+    print(f"Viewer: {report_path.resolve()}")
 
     if open_report:
         webbrowser.open(report_path.resolve().as_uri())
+    return report_path
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Inspect one prepared EgoVerse Stage 0 episode."
+        description="Create a synchronized viewer for one prepared EgoVerse episode."
     )
     parser.add_argument("episode_dir", type=Path)
     parser.add_argument(
-        "--open", action="store_true", help="Open the generated HTML report in a browser."
+        "--output-dir", type=Path, help="Create a portable demo in this directory."
+    )
+    parser.add_argument(
+        "--open", action="store_true", help="Open the generated viewer in a browser."
     )
     arguments = parser.parse_args()
-    inspect_episode(arguments.episode_dir, arguments.open)
+    inspect_episode(arguments.episode_dir, arguments.output_dir, arguments.open)
 
 
 if __name__ == "__main__":
