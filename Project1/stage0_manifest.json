@@ -1,0 +1,42 @@
+{
+  "project": "egoverse-action-recognition",
+  "stage": 0,
+  "selection_rule": "Five Mecka folding_clothes episodes with public RGB video, timestamped annotations, head pose, and left/right wrist, end-effector, and hand-keypoint arrays",
+  "episodes": [
+    {
+      "episode_hash": "69bb01bf11e9b1cd78d2945d",
+      "reason": "Clear sequence of picking up, spreading, folding, and stacking garments",
+      "frames": 2275,
+      "duration_seconds": 75.833333,
+      "annotation_segments": 21
+    },
+    {
+      "episode_hash": "696e84048a176d6397a7a11e",
+      "reason": "Repeated fold, unfold, smooth, and adjust actions on one shirt",
+      "frames": 2233,
+      "duration_seconds": 74.433333,
+      "annotation_segments": 17
+    },
+    {
+      "episode_hash": "69b495b2a506f1c6355d0475",
+      "reason": "Fine-grained cloth folding followed by bagging",
+      "frames": 2279,
+      "duration_seconds": 75.966667,
+      "annotation_segments": 27
+    },
+    {
+      "episode_hash": "69b349a2a979e0f0f0fe3dc6",
+      "reason": "Short annotated actions involving folding, cleaning, and packaging",
+      "frames": 2158,
+      "duration_seconds": 71.933333,
+      "annotation_segments": 28
+    },
+    {
+      "episode_hash": "69b9739ce0d38179fe8305e8",
+      "reason": "Longer bedroom sequence with several garments and folds",
+      "frames": 2845,
+      "duration_seconds": 94.833333,
+      "annotation_segments": 17
+    }
+  ]
+}

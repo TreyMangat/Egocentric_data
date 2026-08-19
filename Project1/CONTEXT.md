@@ -1,47 +1,59 @@
-# Folding-Clothes Clips
+# EgoVerse Action Recognition
 
-This project uses a small, validated subset of EgoVerse folding-clothes recordings to learn the structure of egocentric video data.
+Project 1 teaches the full ML lifecycle by first understanding EgoVerse data, then building wrist-only, video-only, and combined action-recognition models.
 
 ## Language
 
 **Episode**:
-A complete synchronized EgoVerse recording containing RGB frames, measurements, poses, and metadata.
+A complete synchronized recording with video, measurements, and metadata.
 _Avoid_: Clip, video
 
 **Clip**:
-A shorter consecutive frame range extracted from an episode for one experiment.
+A shorter consecutive part of an episode used as one model input.
 _Avoid_: Episode
 
-**RGB stream**:
-The first-person color-image sequence stored as `images.front_1`.
-_Avoid_: RGB metrics
+**Modality**:
+One kind of input, such as RGB video or wrist motion.
+_Avoid_: Metric
 
-**Hand end-effector pose**:
-A seven-value 3D hand position and orientation stored per frame as `left.obs_ee_pose` or `right.obs_ee_pose`.
-_Avoid_: Hand coordinates
+**Annotation segment**:
+A start time, end time, and human-written description of what happens in that interval.
+_Avoid_: Class label
 
-**MANO keypoints**:
-Twenty-one 3D landmarks for one hand, stored as 63 values per frame in `*.obs_keypoints` when available.
-_Avoid_: Hand pose
+**Class label**:
+A standardized answer such as `FOLD` that a model is trained to predict.
+_Avoid_: Raw annotation
 
-**Camera intrinsics**:
-The calibration matrix used to project 3D points onto RGB pixels.
-_Avoid_: Camera pose
+**Training example**:
+One fixed-length input window paired with its correct class label.
+_Avoid_: Episode
 
-**Episode manifest**:
-The tracked list of selected episode hashes and why each episode was chosen; it contains no raw video data.
-_Avoid_: Dataset
+**Wrist trajectory**:
+The wrist's XYZ position across consecutive frames.
+_Avoid_: Hand video
+
+**Dataset split**:
+Separate training, validation, and test groups; episodes from one recording must not leak across groups.
+_Avoid_: Random frames
 
 ## Current State
 
 - Update this file at the end of every work session so a new chat can resume quickly.
-- Modal 1.5.4 is installed in `Project1/.venv` and authenticated under the `treymangat` profile.
-- The existing `egoverse-zarrs-v2` Modal Volume contains 1,115 episode directories, so no new bulk download or R2 credential is needed.
-- Three validated eight-second Aria folding-clothes clips are stored in Modal under `projects/folding-clothes-clips` and locally under `Project1/data/egoverse/clips/folding-clothes-clips`.
-- Every selected clip has 240 aligned RGB/measurement frames and 100% valid head, wrist, hand-pose, and MANO-keypoint data.
-- Checked Mecka folding candidates advertised RGB in metadata but did not contain a materialized `images.front_1` array; the current selection therefore uses complete Aria episodes.
-- Raw `.zarr` episodes and derived `.mp4` clips must remain outside Git history.
+- Project goal: action recognition, progressing from wrist-only to video-only and then multimodal models.
+- Current stage: Stage 0 data understanding and preparation; do not train a model yet.
+- Modal 1.5.4 is installed in `Project1/.venv` and authenticated as `treymangat`.
+- The existing `egoverse-zarrs-v2` Modal Volume is the data store; do not use the exposed AWS keys from the upstream README.
+- The original three Aria clips have excellent RGB and hand tracking but no action annotations, so they are exploratory data rather than supervised examples.
+- `stage0_manifest.json` selects five annotated Mecka `folding_clothes` episodes with public RGB video and both-hand measurements.
+- All five bundles are prepared in Modal under `projects/action-recognition/stage0/episodes`: 11,790 frames, 110 current annotation segments, and about 6.55 minutes total.
+- `stage0_prepare.py` creates complete bundles and verifies exact video/measurement frame alignment.
+- Episode `69bb01bf11e9b1cd78d2945d` is downloaded locally and inspected: 2,275 frames at 30 FPS, 75.83 seconds, 21 annotations, 320×180 RGB, and 100% finite rows in every selected pose/keypoint array.
+- Its wrist arrays are `[2275, 7]` (XYZ + orientation) and its keypoint arrays are `[2275, 63]` (21 XYZ landmarks).
+- `inspect_episode.py` generated `episode_report.html` and `wrist_trajectory.png` beside the local episode data.
+- The episode `696e84048a176d6397a7a11e` exposes a version difference: 10 embedded Zarr annotation records versus 17 current segment-table records. Bundles use the current table and record both counts.
+- Raw free-text annotations often contain multiple actions. A canonical vocabulary such as `REACH`, `GRASP`, `MOVE`, `FOLD`, `RELEASE`, and `OTHER` has not been defined yet.
+- Raw `.zarr`, `.mp4`, and derived data remain outside Git history.
 
 ## Next Step
 
-Load one `metrics.npz` file and overlay its 3D hand information on the matching RGB frames.
+Open the first generated episode report and inspect how its video, wrist movement, and raw annotation boundaries line up. Then document any alignment or annotation-quality problems before designing class labels.
