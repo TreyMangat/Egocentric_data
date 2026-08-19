@@ -49,6 +49,7 @@ _Avoid_: Random frames
 - `stage0_prepare.py` creates complete bundles and verifies exact video/measurement frame alignment.
 - Episode `69bb01bf11e9b1cd78d2945d` is downloaded locally and inspected: 2,275 frames at 30 FPS, 75.83 seconds, 21 annotations, 320×180 RGB, and 100% finite rows in every selected pose/keypoint array.
 - Its wrist arrays are `[2275, 7]` (XYZ + orientation) and its keypoint arrays are `[2275, 63]` (21 XYZ landmarks).
+- Each bundle also preserves `intrinsics_front_1`, the calibration matrix needed to project 3D camera-frame points onto RGB pixels.
 - `inspect_episode.py` generated `episode_report.html` and `wrist_trajectory.png` beside the local episode data.
 - The episode `696e84048a176d6397a7a11e` exposes a version difference: 10 embedded Zarr annotation records versus 17 current segment-table records. Bundles use the current table and record both counts.
 - Raw free-text annotations often contain multiple actions. A canonical vocabulary such as `REACH`, `GRASP`, `MOVE`, `FOLD`, `RELEASE`, and `OTHER` has not been defined yet.

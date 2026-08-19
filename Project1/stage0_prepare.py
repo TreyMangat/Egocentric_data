@@ -115,6 +115,11 @@ def prepare_episode(episode_hash: str) -> dict:
     attributes = dict(group.attrs)
     fps = float(attributes["fps"])
     total_frames = int(attributes["total_frames"])
+    intrinsics = np.asarray(attributes.get("intrinsics", {}).get("front_1"))
+    if intrinsics.shape not in ((3, 3), (3, 4)):
+        raise ValueError(
+            f"{episode_hash} has invalid front-camera intrinsics shape {intrinsics.shape}"
+        )
     arrays = {key: np.asarray(group[key][:]) for key in MEASUREMENT_KEYS}
     wrong_lengths = {key: len(value) for key, value in arrays.items() if len(value) != total_frames}
     if wrong_lengths:
@@ -155,6 +160,7 @@ def prepare_episode(episode_hash: str) -> dict:
             measurements_path,
             frame_index=np.arange(total_frames, dtype=np.int32),
             time_seconds=time_seconds,
+            intrinsics_front_1=intrinsics,
             **arrays,
         )
         annotations_path.write_text(
@@ -185,6 +191,11 @@ def prepare_episode(episode_hash: str) -> dict:
             "duration_seconds": round(expected_duration, 6),
             "video_duration_reported_seconds": round(float(video_duration), 6),
             "frame_size": list(video_info["size"]),
+            "camera_intrinsics": {
+                "array_name": "intrinsics_front_1",
+                "shape": list(intrinsics.shape),
+                "meaning": "Projects 3D camera-frame points onto front RGB pixels.",
+            },
             "annotation_segments": len(annotations),
             "source_zarr_annotation_segments": source_annotation_count,
             "annotation_end_seconds": annotation_end,

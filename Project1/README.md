@@ -39,7 +39,7 @@ The generated report lets you play the RGB video, view both wrist trajectories, 
 ## Episode Bundle
 
 - `rgb.mp4` — first-person RGB video.
-- `measurements.npz` — one row per video frame for time, head pose, wrist pose, hand end-effector pose, and hand keypoints.
+- `measurements.npz` — one row per video frame for time, head pose, wrist pose, hand end-effector pose, and hand keypoints, plus the front-camera intrinsics.
 - `annotations.json` — raw human-written labels with start and end times.
 - `metadata.json` — shapes, validity checks, alignment rules, hashes, and provenance.
 
