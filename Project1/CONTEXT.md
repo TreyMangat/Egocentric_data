@@ -1,6 +1,6 @@
 # EgoVerse Action Recognition
 
-Project 1 teaches the full ML lifecycle by first understanding EgoVerse data, then building wrist-only, video-only, and combined action-recognition models.
+Project 1 teaches the full ML lifecycle by first understanding EgoVerse data, then building wrist-only, video-only, and combined action-recognition models. The broader sequence should eventually connect recognized human activity to a rendered robot motion or simulated task.
 
 ## Language
 
@@ -36,6 +36,22 @@ _Avoid_: Hand video
 Separate training, validation, and test groups; episodes from one recording must not leak across groups.
 _Avoid_: Random frames
 
+**Synchronized viewer**:
+An inspection view where video playback, annotation highlighting, and a moving cursor on sensor graphs share one clock.
+_Avoid_: Static report
+
+**Demo artifact**:
+An easy-to-open visual result that shows what one project stage produced, such as a synchronized episode viewer or model-prediction clip.
+_Avoid_: Raw output
+
+**Kinematic retargeting**:
+Mapping tracked human motion onto feasible robot joint motion without claiming that the robot physically completes the task.
+_Avoid_: Robot policy, task execution
+
+**Simulated task execution**:
+A robot interacting with objects in a physics simulator to complete the task, not merely replaying a plausible arm trajectory.
+_Avoid_: Robot rendering, kinematic playback
+
 ## Current State
 
 - Update this file at the end of every work session so a new chat can resume quickly.
@@ -53,8 +69,11 @@ _Avoid_: Random frames
 - `inspect_episode.py` generated `episode_report.html` and `wrist_trajectory.png` beside the local episode data.
 - The episode `696e84048a176d6397a7a11e` exposes a version difference: 10 embedded Zarr annotation records versus 17 current segment-table records. Bundles use the current table and record both counts.
 - Raw free-text annotations often contain multiple actions. A canonical vocabulary such as `REACH`, `GRASP`, `MOVE`, `FOLD`, `RELEASE`, and `OTHER` has not been defined yet.
+- Requested next visualization: synchronize the video with a moving cursor on the wrist/hand graphs and the active annotation.
+- Requested project organization: a prominent demo gallery for stage results plus a concise notes folder; exact structure is still being discussed.
+- Long-term goal: progress from recognizing human actions to visualizing a robot performing related motion, then later distinguish simple kinematic retargeting from true simulated task execution.
 - Raw `.zarr`, `.mp4`, and derived data remain outside Git history.
 
 ## Next Step
 
-Open the first generated episode report and inspect how its video, wrist movement, and raw annotation boundaries line up. Then document any alignment or annotation-quality problems before designing class labels.
+Agree on the viewer/gallery structure, then use the synchronized viewer to audit a small set of labels. Do not start model training until the label vocabulary and example boundaries have been checked.
