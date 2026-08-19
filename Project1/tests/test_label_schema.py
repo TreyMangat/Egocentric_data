@@ -50,7 +50,7 @@ class AutomaticLabelTests(unittest.TestCase):
         self.assertEqual(document["labels"][0]["end_seconds"], 2.0)
         self.assertEqual(document["labels"][1]["start_frame"], 60)
         self.assertTrue(all(item["uncertain"] for item in document["labels"]))
-        self.assertTrue(all(not item["reviewed"] for item in document["labels"]))
+        self.assertTrue(all(item["accepted"] for item in document["labels"]))
 
 
 class LabelValidationTests(unittest.TestCase):
@@ -65,7 +65,7 @@ class LabelValidationTests(unittest.TestCase):
                     "label": "OTHER",
                     "custom_label": "UNFOLD",
                     "active_hands": ["right"],
-                    "reviewed": True,
+                    "accepted": True,
                 }
             ],
         }
@@ -74,6 +74,7 @@ class LabelValidationTests(unittest.TestCase):
         self.assertEqual(label["start_frame"], 30)
         self.assertEqual(label["end_frame_exclusive"], 75)
         self.assertEqual(label["active_hands"], ["right"])
+        self.assertTrue(label["accepted"])
 
     def test_rejects_overlapping_scene_labels(self):
         document = {

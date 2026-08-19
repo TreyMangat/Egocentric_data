@@ -1,0 +1,622 @@
+{
+  "schema_version": 2,
+  "episode_hash": "696e84048a176d6397a7a11e",
+  "fps": 30.0,
+  "frames": 2233,
+  "duration_seconds": 74.433333,
+  "class_labels": [
+    "PICK_UP",
+    "PLACE",
+    "MOVE",
+    "FOLD",
+    "SMOOTH",
+    "OTHER"
+  ],
+  "automatic_method": "annotation_text_rules_v1",
+  "created_at": "2026-08-19T05:48:56+00:00",
+  "updated_at": "2026-08-19T05:48:56+00:00",
+  "labels": [
+    {
+      "id": "auto-0-0",
+      "start_seconds": 0.0,
+      "end_seconds": 3.0,
+      "start_frame": 0,
+      "end_frame_exclusive": 90,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 0,
+      "raw_annotation": "smoothen pink t-shirt, fold pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-0-1",
+      "start_seconds": 3.0,
+      "end_seconds": 6.0,
+      "start_frame": 90,
+      "end_frame_exclusive": 180,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 0,
+      "raw_annotation": "smoothen pink t-shirt, fold pink t-shirt",
+      "suggestion_text": "fold pink t-shirt",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-1-0",
+      "start_seconds": 6.0,
+      "end_seconds": 7.333,
+      "start_frame": 180,
+      "end_frame_exclusive": 220,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 1,
+      "raw_annotation": "smoothen pink t-shirt, unfold pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-1-1",
+      "start_seconds": 7.333,
+      "end_seconds": 8.667,
+      "start_frame": 220,
+      "end_frame_exclusive": 260,
+      "label": "OTHER",
+      "custom_label": "UNFOLD",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 1,
+      "raw_annotation": "smoothen pink t-shirt, unfold pink t-shirt",
+      "suggestion_text": "unfold pink t-shirt",
+      "matched_terms": []
+    },
+    {
+      "id": "auto-2-0",
+      "start_seconds": 8.667,
+      "end_seconds": 11.084,
+      "start_frame": 260,
+      "end_frame_exclusive": 333,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 2,
+      "raw_annotation": "smoothen pink t-shirt, fold pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-2-1",
+      "start_seconds": 11.084,
+      "end_seconds": 13.5,
+      "start_frame": 333,
+      "end_frame_exclusive": 405,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 2,
+      "raw_annotation": "smoothen pink t-shirt, fold pink t-shirt",
+      "suggestion_text": "fold pink t-shirt",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-3-0",
+      "start_seconds": 13.5,
+      "end_seconds": 14.916,
+      "start_frame": 405,
+      "end_frame_exclusive": 447,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 3,
+      "raw_annotation": "smoothen pink t-shirt, unfold pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-3-1",
+      "start_seconds": 14.916,
+      "end_seconds": 16.333,
+      "start_frame": 447,
+      "end_frame_exclusive": 490,
+      "label": "OTHER",
+      "custom_label": "UNFOLD",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 3,
+      "raw_annotation": "smoothen pink t-shirt, unfold pink t-shirt",
+      "suggestion_text": "unfold pink t-shirt",
+      "matched_terms": []
+    },
+    {
+      "id": "auto-4-0",
+      "start_seconds": 16.333,
+      "end_seconds": 19.166,
+      "start_frame": 490,
+      "end_frame_exclusive": 575,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 4,
+      "raw_annotation": "smoothen pink t-shirt, fold pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-4-1",
+      "start_seconds": 19.166,
+      "end_seconds": 22.0,
+      "start_frame": 575,
+      "end_frame_exclusive": 660,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 4,
+      "raw_annotation": "smoothen pink t-shirt, fold pink t-shirt",
+      "suggestion_text": "fold pink t-shirt",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-5-0",
+      "start_seconds": 22.0,
+      "end_seconds": 27.0,
+      "start_frame": 660,
+      "end_frame_exclusive": 810,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 5,
+      "raw_annotation": "smoothen pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-6-0",
+      "start_seconds": 27.0,
+      "end_seconds": 30.5,
+      "start_frame": 810,
+      "end_frame_exclusive": 915,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 6,
+      "raw_annotation": "fold sleeve of pink t-shirt, smoothen pink t-shirt",
+      "suggestion_text": "fold sleeve of pink t-shirt",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-6-1",
+      "start_seconds": 30.5,
+      "end_seconds": 34.0,
+      "start_frame": 915,
+      "end_frame_exclusive": 1020,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 6,
+      "raw_annotation": "fold sleeve of pink t-shirt, smoothen pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-7-0",
+      "start_seconds": 34.0,
+      "end_seconds": 35.35,
+      "start_frame": 1020,
+      "end_frame_exclusive": 1060,
+      "label": "OTHER",
+      "custom_label": "UNFOLD",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 7,
+      "raw_annotation": "unfold sleeve of pink t-shirt, smoothen pink t-shirt",
+      "suggestion_text": "unfold sleeve of pink t-shirt",
+      "matched_terms": []
+    },
+    {
+      "id": "auto-7-1",
+      "start_seconds": 35.35,
+      "end_seconds": 36.7,
+      "start_frame": 1060,
+      "end_frame_exclusive": 1101,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 7,
+      "raw_annotation": "unfold sleeve of pink t-shirt, smoothen pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-8-0",
+      "start_seconds": 36.7,
+      "end_seconds": 42.017,
+      "start_frame": 1101,
+      "end_frame_exclusive": 1260,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 8,
+      "raw_annotation": "fold sleeve of pink t-shirt, smoothen pink t-shirt",
+      "suggestion_text": "fold sleeve of pink t-shirt",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-8-1",
+      "start_seconds": 42.017,
+      "end_seconds": 47.333,
+      "start_frame": 1260,
+      "end_frame_exclusive": 1420,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 8,
+      "raw_annotation": "fold sleeve of pink t-shirt, smoothen pink t-shirt",
+      "suggestion_text": "smoothen pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-9-0",
+      "start_seconds": 47.333,
+      "end_seconds": 49.083,
+      "start_frame": 1420,
+      "end_frame_exclusive": 1472,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 9,
+      "raw_annotation": "fold pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "fold pink t-shirt",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-9-1",
+      "start_seconds": 49.083,
+      "end_seconds": 50.833,
+      "start_frame": 1472,
+      "end_frame_exclusive": 1525,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 9,
+      "raw_annotation": "fold pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "adjust folded pink t-shirt",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-10-0",
+      "start_seconds": 50.833,
+      "end_seconds": 53.083,
+      "start_frame": 1525,
+      "end_frame_exclusive": 1592,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 10,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "smoothen folded pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-10-1",
+      "start_seconds": 53.083,
+      "end_seconds": 55.333,
+      "start_frame": 1592,
+      "end_frame_exclusive": 1660,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 10,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "adjust folded pink t-shirt",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-11-0",
+      "start_seconds": 55.333,
+      "end_seconds": 56.733,
+      "start_frame": 1660,
+      "end_frame_exclusive": 1702,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 11,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "smoothen folded pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-11-1",
+      "start_seconds": 56.733,
+      "end_seconds": 58.133,
+      "start_frame": 1702,
+      "end_frame_exclusive": 1744,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 11,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "adjust folded pink t-shirt",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-12-0",
+      "start_seconds": 58.133,
+      "end_seconds": 60.25,
+      "start_frame": 1744,
+      "end_frame_exclusive": 1807,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 12,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "smoothen folded pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-12-1",
+      "start_seconds": 60.25,
+      "end_seconds": 62.367,
+      "start_frame": 1807,
+      "end_frame_exclusive": 1871,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 12,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "adjust folded pink t-shirt",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-13-0",
+      "start_seconds": 62.367,
+      "end_seconds": 63.833,
+      "start_frame": 1871,
+      "end_frame_exclusive": 1915,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 13,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "smoothen folded pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-13-1",
+      "start_seconds": 63.833,
+      "end_seconds": 65.3,
+      "start_frame": 1915,
+      "end_frame_exclusive": 1959,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 13,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "adjust folded pink t-shirt",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-14-0",
+      "start_seconds": 65.3,
+      "end_seconds": 67.75,
+      "start_frame": 1959,
+      "end_frame_exclusive": 2032,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 14,
+      "raw_annotation": "smoothen folded pink t-shirt, flip folded pink t-shirt",
+      "suggestion_text": "smoothen folded pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-14-1",
+      "start_seconds": 67.75,
+      "end_seconds": 70.2,
+      "start_frame": 2032,
+      "end_frame_exclusive": 2106,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 14,
+      "raw_annotation": "smoothen folded pink t-shirt, flip folded pink t-shirt",
+      "suggestion_text": "flip folded pink t-shirt",
+      "matched_terms": [
+        "flip"
+      ]
+    },
+    {
+      "id": "auto-15-0",
+      "start_seconds": 70.2,
+      "end_seconds": 71.8,
+      "start_frame": 2106,
+      "end_frame_exclusive": 2154,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 15,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "smoothen folded pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-15-1",
+      "start_seconds": 71.8,
+      "end_seconds": 73.4,
+      "start_frame": 2154,
+      "end_frame_exclusive": 2202,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 15,
+      "raw_annotation": "smoothen folded pink t-shirt, adjust folded pink t-shirt",
+      "suggestion_text": "adjust folded pink t-shirt",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-16-0",
+      "start_seconds": 73.4,
+      "end_seconds": 75.057,
+      "start_frame": 2202,
+      "end_frame_exclusive": 2233,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 16,
+      "raw_annotation": "smoothen folded pink t-shirt",
+      "suggestion_text": "smoothen folded pink t-shirt",
+      "matched_terms": [
+        "smoothen"
+      ]
+    }
+  ]
+}

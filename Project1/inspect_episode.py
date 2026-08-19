@@ -9,7 +9,7 @@ from pathlib import Path
 
 import numpy as np
 
-from label_schema import generate_label_document
+from label_schema import generate_label_document, validate_label_document
 
 
 def _xyz(array: np.ndarray) -> np.ndarray:
@@ -142,7 +142,7 @@ footer {{ margin-top: 28px; color: var(--muted); font-size: 13px; }}
         <span class="now-label">Active raw annotation</span>
         <strong id="active-annotation">Loading…</strong>
         <div class="training-now">
-          <span class="now-label">Current automatic / reviewed label</span>
+          <span class="now-label">Current accepted label</span>
           <strong id="active-training-label">Loading…</strong>
         </div>
       </div>
@@ -162,8 +162,8 @@ footer {{ margin-top: 28px; color: var(--muted); font-size: 13px; }}
     </div>
   </section>
   <section class="panel label-editor hidden" id="label-editor">
-    <h2>Review or create a label</h2>
-    <p class="small">Automatic text matches are suggestions. Saving marks the selected interval as manually reviewed.</p>
+    <h2>Edit or create a label</h2>
+    <p class="small">Automatic labels are accepted for training by default. Saving records your changes as a manual edit.</p>
     <div class="form-grid">
       <label>Start (seconds)<input id="label-start" type="number" min="0" step="0.033"></label>
       <label>End (seconds)<input id="label-end" type="number" min="0" step="0.033"></label>
@@ -179,12 +179,12 @@ footer {{ margin-top: 28px; color: var(--muted); font-size: 13px; }}
       <button class="action" id="use-start" type="button">Use video as start</button>
       <button class="action" id="use-end" type="button">Use video as end</button>
       <button class="action" id="new-label" type="button">New label here</button>
-      <button class="action primary" id="save-label" type="button">Save / approve</button>
+      <button class="action primary" id="save-label" type="button">Save changes</button>
       <button class="action danger" id="delete-label" type="button">Delete</button>
       <output id="save-status" aria-live="polite"></output>
     </div>
   </section>
-  <h2>Automatic and reviewed labels</h2>
+  <h2>Accepted training labels</h2>
   <p class="small" id="label-summary"></p>
   <div class="training-labels" id="training-label-list"></div>
   <h2>Timestamped annotations</h2>
@@ -265,9 +265,10 @@ function populateEditor(label) {{
 
 function renderLabelList() {{
   labelList.replaceChildren();
-  const reviewed=labelDocument.labels.filter(label=>label.reviewed).length;
+  const accepted=labelDocument.labels.filter(label=>label.accepted).length;
+  const manual=labelDocument.labels.filter(label=>label.source!=='automatic_text_rule').length;
   const other=labelDocument.labels.filter(label=>label.label==='OTHER').length;
-  labelSummary.textContent=`${{labelDocument.labels.length}} suggestions · ${{reviewed}} reviewed · ${{other}} OTHER`;
+  labelSummary.textContent=`${{accepted}} accepted · ${{manual}} manually edited · ${{other}} OTHER`;
   labelDocument.labels.forEach(label=>{{
     const row=document.createElement('button');
     row.type='button'; row.className='training-row'; row.dataset.id=label.id;
@@ -275,7 +276,7 @@ function renderLabelList() {{
     const time=document.createElement('span'); time.textContent=`${{label.start_seconds.toFixed(2)}}–${{label.end_seconds.toFixed(2)}}s`;
     const className=document.createElement('span'); className.className='class-name'; className.textContent=labelName(label);
     const detail=document.createElement('span'); detail.textContent=label.suggestion_text || label.raw_annotation || 'Manual interval';
-    const status=document.createElement('span'); status.className='status'; status.textContent=label.reviewed?'Reviewed':'Auto suggestion';
+    const status=document.createElement('span'); status.className='status'; status.textContent=label.source==='automatic_text_rule'?'Auto · accepted':'Manual edit';
     row.append(time,className,detail,status);
     row.addEventListener('click',()=>{{
       populateEditor(label);
@@ -371,7 +372,7 @@ function update() {{
   const trainingLabel=trainingLabelAt(time);
   activeAnnotation.textContent=segment.label;
   activeTrainingLabelElement.textContent=trainingLabel
-    ? `${{labelName(trainingLabel)}} (${{trainingLabel.reviewed?'reviewed':'automatic suggestion'}})`
+    ? `${{labelName(trainingLabel)}} (${{trainingLabel.source==='automatic_text_rule'?'automatic':'manual edit'}})`
     : 'No label for this time';
   timeDisplay.textContent=`${{time.toFixed(2)}} / ${{DATA.episode.duration.toFixed(2)}}s`;
   annotationRows.forEach(row=>{{
@@ -419,7 +420,7 @@ if(DATA.editable) {{
     const updated={{
       ...(existing || {{}}), id, start_seconds:start, end_seconds:end, label:labelClass.value,
       custom_label:labelClass.value==='OTHER'?customLabel.value.trim():'', active_hands:activeHands,
-      uncertain:labelUncertain.checked, reviewed:true,
+      uncertain:labelUncertain.checked, accepted:true,
       source:existing?.source==='automatic_text_rule'?'manual_edit':(existing?.source || 'manual')
     }};
     const next=structuredClone(labelDocument);
@@ -445,7 +446,7 @@ if(DATA.editable) {{
     }} catch(error) {{ saveStatus.textContent=error.message; }}
   }});
 }} else {{
-  labelSummary.textContent='Automatic text-rule suggestions; launch the labeling server to review or edit them.';
+  labelSummary.textContent='Automatic text-rule labels are accepted by default; launch the labeling server to edit them.';
 }}
 
 new ResizeObserver(draw).observe(canvas.parentElement);
@@ -478,12 +479,32 @@ def inspect_episode(
     with np.load(episode_dir / "measurements.npz") as archive:
         measurements = {key: archive[key] for key in archive.files}
 
+    saved_labels_path = (
+        Path(__file__).parent
+        / "labels"
+        / "accepted"
+        / f"{metadata['episode_hash']}.json"
+    )
+    label_document = None
+    if saved_labels_path.is_file():
+        label_document = validate_label_document(
+            json.loads(saved_labels_path.read_text()), metadata
+        )
+
     destination_dir = output_dir or episode_dir
     destination_dir.mkdir(parents=True, exist_ok=True)
     report_path = destination_dir / ("index.html" if output_dir else "episode_report.html")
     if destination_dir.resolve() != episode_dir.resolve():
         shutil.copy2(episode_dir / "rgb.mp4", destination_dir / "rgb.mp4")
-    _write_viewer(_viewer_data(metadata, annotations, measurements), report_path)
+    _write_viewer(
+        _viewer_data(
+            metadata,
+            annotations,
+            measurements,
+            label_document=label_document,
+        ),
+        report_path,
+    )
 
     print(f"Episode: {metadata['episode_hash']}")
     print(

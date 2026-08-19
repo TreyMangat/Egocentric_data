@@ -1,0 +1,664 @@
+{
+  "schema_version": 2,
+  "episode_hash": "69b495b2a506f1c6355d0475",
+  "fps": 30.0,
+  "frames": 2279,
+  "duration_seconds": 75.966667,
+  "class_labels": [
+    "PICK_UP",
+    "PLACE",
+    "MOVE",
+    "FOLD",
+    "SMOOTH",
+    "OTHER"
+  ],
+  "automatic_method": "annotation_text_rules_v1",
+  "created_at": "2026-08-19T05:48:56+00:00",
+  "updated_at": "2026-08-19T05:48:56+00:00",
+  "labels": [
+    {
+      "id": "auto-0-0",
+      "start_seconds": 0.0,
+      "end_seconds": 2.165,
+      "start_frame": 0,
+      "end_frame_exclusive": 65,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 0,
+      "raw_annotation": "place plastic bag with cloth on stack from table, adjust plastic bag with cloth",
+      "suggestion_text": "place plastic bag with cloth on stack from table",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-0-1",
+      "start_seconds": 2.165,
+      "end_seconds": 4.33,
+      "start_frame": 65,
+      "end_frame_exclusive": 130,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 0,
+      "raw_annotation": "place plastic bag with cloth on stack from table, adjust plastic bag with cloth",
+      "suggestion_text": "adjust plastic bag with cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-1-0",
+      "start_seconds": 4.33,
+      "end_seconds": 6.018,
+      "start_frame": 130,
+      "end_frame_exclusive": 181,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 1,
+      "raw_annotation": "pick up cloth from pile, adjust cloth",
+      "suggestion_text": "pick up cloth from pile",
+      "matched_terms": [
+        "pick up"
+      ]
+    },
+    {
+      "id": "auto-1-1",
+      "start_seconds": 6.018,
+      "end_seconds": 7.705,
+      "start_frame": 181,
+      "end_frame_exclusive": 231,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 1,
+      "raw_annotation": "pick up cloth from pile, adjust cloth",
+      "suggestion_text": "adjust cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-2-0",
+      "start_seconds": 7.705,
+      "end_seconds": 9.393,
+      "start_frame": 231,
+      "end_frame_exclusive": 282,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 2,
+      "raw_annotation": "fold cloth",
+      "suggestion_text": "fold cloth",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-3-0",
+      "start_seconds": 9.393,
+      "end_seconds": 11.08,
+      "start_frame": 282,
+      "end_frame_exclusive": 332,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 3,
+      "raw_annotation": "adjust cloth on",
+      "suggestion_text": "adjust cloth on",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-4-0",
+      "start_seconds": 11.08,
+      "end_seconds": 14.455,
+      "start_frame": 332,
+      "end_frame_exclusive": 434,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 4,
+      "raw_annotation": "adjust cloth",
+      "suggestion_text": "adjust cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-5-0",
+      "start_seconds": 14.455,
+      "end_seconds": 17.83,
+      "start_frame": 434,
+      "end_frame_exclusive": 535,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 5,
+      "raw_annotation": "adjust cloth",
+      "suggestion_text": "adjust cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-6-0",
+      "start_seconds": 17.83,
+      "end_seconds": 21.205,
+      "start_frame": 535,
+      "end_frame_exclusive": 636,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 6,
+      "raw_annotation": "fold cloth",
+      "suggestion_text": "fold cloth",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-7-0",
+      "start_seconds": 21.205,
+      "end_seconds": 24.58,
+      "start_frame": 636,
+      "end_frame_exclusive": 737,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 7,
+      "raw_annotation": "fold cloth",
+      "suggestion_text": "fold cloth",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-8-0",
+      "start_seconds": 24.58,
+      "end_seconds": 27.955,
+      "start_frame": 737,
+      "end_frame_exclusive": 839,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 8,
+      "raw_annotation": "adjust cloth",
+      "suggestion_text": "adjust cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-9-0",
+      "start_seconds": 27.955,
+      "end_seconds": 31.33,
+      "start_frame": 839,
+      "end_frame_exclusive": 940,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 9,
+      "raw_annotation": "adjust cloth",
+      "suggestion_text": "adjust cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-10-0",
+      "start_seconds": 31.33,
+      "end_seconds": 33.067,
+      "start_frame": 940,
+      "end_frame_exclusive": 992,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 10,
+      "raw_annotation": "smoothen cloth, rotate cloth",
+      "suggestion_text": "smoothen cloth",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-10-1",
+      "start_seconds": 33.067,
+      "end_seconds": 34.805,
+      "start_frame": 992,
+      "end_frame_exclusive": 1044,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 10,
+      "raw_annotation": "smoothen cloth, rotate cloth",
+      "suggestion_text": "rotate cloth",
+      "matched_terms": [
+        "rotate"
+      ]
+    },
+    {
+      "id": "auto-11-0",
+      "start_seconds": 34.805,
+      "end_seconds": 37.08,
+      "start_frame": 1044,
+      "end_frame_exclusive": 1112,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 11,
+      "raw_annotation": "adjust cloth",
+      "suggestion_text": "adjust cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-12-0",
+      "start_seconds": 37.08,
+      "end_seconds": 39.955,
+      "start_frame": 1112,
+      "end_frame_exclusive": 1199,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 12,
+      "raw_annotation": "move cloth on table",
+      "suggestion_text": "move cloth on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-13-0",
+      "start_seconds": 39.955,
+      "end_seconds": 42.83,
+      "start_frame": 1199,
+      "end_frame_exclusive": 1285,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 13,
+      "raw_annotation": "fold cloth",
+      "suggestion_text": "fold cloth",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-14-0",
+      "start_seconds": 42.83,
+      "end_seconds": 44.267,
+      "start_frame": 1285,
+      "end_frame_exclusive": 1328,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 14,
+      "raw_annotation": "smoothen cloth, move cloth on table",
+      "suggestion_text": "smoothen cloth",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-14-1",
+      "start_seconds": 44.267,
+      "end_seconds": 45.705,
+      "start_frame": 1328,
+      "end_frame_exclusive": 1371,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 14,
+      "raw_annotation": "smoothen cloth, move cloth on table",
+      "suggestion_text": "move cloth on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-15-0",
+      "start_seconds": 45.705,
+      "end_seconds": 48.78,
+      "start_frame": 1371,
+      "end_frame_exclusive": 1463,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 15,
+      "raw_annotation": "fold cloth",
+      "suggestion_text": "fold cloth",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-16-0",
+      "start_seconds": 48.78,
+      "end_seconds": 51.455,
+      "start_frame": 1463,
+      "end_frame_exclusive": 1544,
+      "label": "SMOOTH",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 16,
+      "raw_annotation": "smoothen cloth",
+      "suggestion_text": "smoothen cloth",
+      "matched_terms": [
+        "smoothen"
+      ]
+    },
+    {
+      "id": "auto-17-0",
+      "start_seconds": 51.455,
+      "end_seconds": 54.33,
+      "start_frame": 1544,
+      "end_frame_exclusive": 1630,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 17,
+      "raw_annotation": "adjust cloth",
+      "suggestion_text": "adjust cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-18-0",
+      "start_seconds": 54.33,
+      "end_seconds": 56.138,
+      "start_frame": 1630,
+      "end_frame_exclusive": 1684,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 18,
+      "raw_annotation": "pick up plastic bag from table, open plastic bag",
+      "suggestion_text": "pick up plastic bag from table",
+      "matched_terms": [
+        "pick up"
+      ]
+    },
+    {
+      "id": "auto-18-1",
+      "start_seconds": 56.138,
+      "end_seconds": 57.946,
+      "start_frame": 1684,
+      "end_frame_exclusive": 1738,
+      "label": "OTHER",
+      "custom_label": "OPEN",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 18,
+      "raw_annotation": "pick up plastic bag from table, open plastic bag",
+      "suggestion_text": "open plastic bag",
+      "matched_terms": []
+    },
+    {
+      "id": "auto-19-0",
+      "start_seconds": 57.946,
+      "end_seconds": 58.554,
+      "start_frame": 1738,
+      "end_frame_exclusive": 1757,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 19,
+      "raw_annotation": "place plastic bag on table, move cloth on table",
+      "suggestion_text": "place plastic bag on table",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-19-1",
+      "start_seconds": 58.554,
+      "end_seconds": 59.163,
+      "start_frame": 1757,
+      "end_frame_exclusive": 1775,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 19,
+      "raw_annotation": "place plastic bag on table, move cloth on table",
+      "suggestion_text": "move cloth on table",
+      "matched_terms": [
+        "move"
+      ]
+    },
+    {
+      "id": "auto-20-0",
+      "start_seconds": 59.163,
+      "end_seconds": 61.579,
+      "start_frame": 1775,
+      "end_frame_exclusive": 1847,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 20,
+      "raw_annotation": "lift cloth",
+      "suggestion_text": "lift cloth",
+      "matched_terms": [
+        "lift"
+      ]
+    },
+    {
+      "id": "auto-21-0",
+      "start_seconds": 61.579,
+      "end_seconds": 64.995,
+      "start_frame": 1847,
+      "end_frame_exclusive": 1950,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 21,
+      "raw_annotation": "place cloth in plastic bag",
+      "suggestion_text": "place cloth in plastic bag",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-22-0",
+      "start_seconds": 64.995,
+      "end_seconds": 66.911,
+      "start_frame": 1950,
+      "end_frame_exclusive": 2007,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 22,
+      "raw_annotation": "place cloth in plastic bag",
+      "suggestion_text": "place cloth in plastic bag",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-23-0",
+      "start_seconds": 66.911,
+      "end_seconds": 67.869,
+      "start_frame": 2007,
+      "end_frame_exclusive": 2036,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 23,
+      "raw_annotation": "rotate plastic bag with cloth, adjust plastic bag with cloth",
+      "suggestion_text": "rotate plastic bag with cloth",
+      "matched_terms": [
+        "rotate"
+      ]
+    },
+    {
+      "id": "auto-23-1",
+      "start_seconds": 67.869,
+      "end_seconds": 68.828,
+      "start_frame": 2036,
+      "end_frame_exclusive": 2065,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 23,
+      "raw_annotation": "rotate plastic bag with cloth, adjust plastic bag with cloth",
+      "suggestion_text": "adjust plastic bag with cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-24-0",
+      "start_seconds": 68.828,
+      "end_seconds": 71.244,
+      "start_frame": 2065,
+      "end_frame_exclusive": 2137,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 24,
+      "raw_annotation": "flip plastic bag with cloth on table",
+      "suggestion_text": "flip plastic bag with cloth on table",
+      "matched_terms": [
+        "flip"
+      ]
+    },
+    {
+      "id": "auto-25-0",
+      "start_seconds": 71.244,
+      "end_seconds": 73.66,
+      "start_frame": 2137,
+      "end_frame_exclusive": 2210,
+      "label": "MOVE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 25,
+      "raw_annotation": "adjust plastic bag with cloth",
+      "suggestion_text": "adjust plastic bag with cloth",
+      "matched_terms": [
+        "adjust"
+      ]
+    },
+    {
+      "id": "auto-26-0",
+      "start_seconds": 73.66,
+      "end_seconds": 75.933,
+      "start_frame": 2210,
+      "end_frame_exclusive": 2278,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 26,
+      "raw_annotation": "place plastic bag with cloth on stack from table",
+      "suggestion_text": "place plastic bag with cloth on stack from table",
+      "matched_terms": [
+        "place"
+      ]
+    }
+  ]
+}

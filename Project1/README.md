@@ -1,6 +1,6 @@
 # Project 1: EgoVerse Action Recognition
 
-Build a model that watches a short egocentric clip and predicts the action being performed. We are currently at **Stage 0: understand and prepare the data**. No model training yet.
+Build a model that watches a short egocentric clip and predicts the action being performed. **Stage 0 is complete** for five folding-clothes episodes; Stage 1 dataset construction is next. No model training yet.
 
 ## Roadmap
 
@@ -52,9 +52,9 @@ Start the local labeling server:
 python label_episode.py data/egoverse/stage0/episodes/69bb01bf11e9b1cd78d2945d
 ```
 
-It converts raw annotation phrases into automatic suggestions using transparent text rules. These are not model predictions and remain unreviewed until you save or approve them. You can change the class or time range, name an `OTHER`, select active hands, mark uncertainty, or create a new interval.
+It converts raw annotation phrases into automatic labels using transparent text rules. They are accepted for training by default, but they are not model predictions. You can change the class or time range, name an `OTHER`, select active hands, mark uncertainty, or create a new interval.
 
-Edits are saved to [`labels/manual`](./labels/manual/) as Git-tracked JSON. Press `Ctrl+C` in the terminal to stop the server.
+Accepted labels and your edits are saved to [`labels/accepted`](./labels/accepted/) as Git-tracked JSON. Press `Ctrl+C` in the terminal to stop the server.
 
 ## Episode Bundle
 
@@ -65,6 +65,6 @@ Edits are saved to [`labels/manual`](./labels/manual/) as Git-tracked JSON. Pres
 
 For the first episode, wrist poses have shape `[2275, 7]`: 2,275 timestamps, each with XYZ position and four orientation values. Each hand-keypoint array has shape `[2275, 63]`, or 21 landmarks × XYZ.
 
-The annotations are free-text and sometimes name several actions in one segment. Turning them into classes such as `REACH`, `GRASP`, and `FOLD` is a later data-design step, not something Stage 0 silently guesses.
+The annotations are free-text and sometimes name several actions in one segment. Transparent text rules convert them into the initial accepted classes while retaining an uncertainty flag for estimated boundaries. Finer labels such as `REACH` and `GRASP` can be explored later if the data supports them.
 
 Raw videos and generated reports stay outside Git. Source: [EgoVerse](https://github.com/GaTech-RL2/EgoVerse) and the [EgoVerse Explorer](https://partners.mecka.ai/egoverse).

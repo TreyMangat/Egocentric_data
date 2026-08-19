@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 CLASS_LABELS = ("PICK_UP", "PLACE", "MOVE", "FOLD", "SMOOTH", "OTHER")
 
 LABEL_PATTERNS = {
@@ -111,7 +111,7 @@ def generate_label_document(metadata: dict, annotations: list[dict]) -> dict:
                     "custom_label": classification["custom_label"],
                     "active_hands": [],
                     "uncertain": classification["uncertain"] or len(parts) > 1,
-                    "reviewed": False,
+                    "accepted": True,
                     "source": "automatic_text_rule",
                     "raw_annotation_index": annotation["segment_index"],
                     "raw_annotation": annotation["label"],
@@ -176,7 +176,7 @@ def validate_label_document(document: dict, metadata: dict) -> dict:
                 "custom_label": str(item.get("custom_label", "")).strip()[:80],
                 "active_hands": active_hands,
                 "uncertain": bool(item.get("uncertain", False)),
-                "reviewed": bool(item.get("reviewed", False)),
+                "accepted": bool(item.get("accepted", True)),
                 "source": str(item.get("source", "manual"))[:40],
                 "raw_annotation_index": item.get("raw_annotation_index"),
                 "raw_annotation": str(item.get("raw_annotation", ""))[:500],
@@ -213,7 +213,14 @@ def load_or_create_label_document(
     path: Path, metadata: dict, annotations: list[dict]
 ) -> dict:
     if path.is_file():
-        return validate_label_document(json.loads(path.read_text()), metadata)
+        saved_document = json.loads(path.read_text())
+        document = validate_label_document(saved_document, metadata)
+        needs_migration = saved_document.get("schema_version") != SCHEMA_VERSION or any(
+            "accepted" not in label for label in saved_document.get("labels", [])
+        )
+        if needs_migration:
+            save_label_document(path, document)
+        return document
     document = generate_label_document(metadata, annotations)
     save_label_document(path, document)
     return document

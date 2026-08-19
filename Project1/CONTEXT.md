@@ -25,12 +25,20 @@ A standardized answer such as `FOLD` that a model is trained to predict.
 _Avoid_: Raw annotation
 
 **Manual label**:
-A reviewer-chosen class and time range stored separately from the immutable raw annotation.
+A reviewer-created or edited class and time range stored separately from the immutable raw annotation.
 _Avoid_: Corrected annotation
 
-**Automatic suggestion**:
-A provisional class inferred from raw annotation text; it is never training truth until manually reviewed.
-_Avoid_: Model prediction, manual label
+**Automatic label**:
+A class inferred from raw annotation text and accepted as training truth unless a reviewer edits or deletes it.
+_Avoid_: Model prediction, manual label, suggestion
+
+**Accepted label**:
+A class and time range included as training truth, whether it came from the automatic rules or a manual edit.
+_Avoid_: Raw annotation, suggestion
+
+**Weak label**:
+An accepted training label inferred without frame-by-frame human verification, so its class may be useful even when its exact boundary is noisy.
+_Avoid_: Verified ground truth
 
 **Training example**:
 One fixed-length input window paired with its correct class label.
@@ -59,20 +67,3 @@ _Avoid_: Robot policy, task execution
 **Simulated task execution**:
 A robot interacting with objects in a physics simulator to complete the task, not merely replaying a plausible arm trajectory.
 _Avoid_: Robot rendering, kinematic playback
-
-## Current State
-
-- Stage 0 is active; no model training yet.
-- Five aligned folding-clothes bundles are stored in Modal: 11,790 frames and 110 current annotation segments.
-- The first episode is local with RGB, wrist/hand/head poses, 21 keypoints per hand, annotations, and camera intrinsics.
-- `DEMOS/00_stage0_viewer` synchronizes video, graph playhead, completed trajectory, and active annotation.
-- `notes/00_stage0.md` records the small set of data-quality findings.
-- Initial classes are `PICK_UP`, `PLACE`, `MOVE`, `FOLD`, `SMOOTH`, and `OTHER`.
-- Raw annotations remain immutable; the labeler saves automatic suggestions and manual edits separately.
-- Future training uses reviewed labels; their timestamps link to the aligned RGB and hand data.
-- Raw videos remain outside Git.
-- Long-term direction: recognition → kinematic retargeting → simulated task execution.
-
-## Next Step
-
-Review the 24 automatic suggestions for the first episode before training.

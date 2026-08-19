@@ -174,10 +174,10 @@ def create_server(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Review automatic EgoVerse labels and save manual edits."
+        description="Inspect accepted EgoVerse labels and save manual edits."
     )
     parser.add_argument("episode_dir", type=Path)
-    parser.add_argument("--labels-dir", type=Path, default=Path("labels/manual"))
+    parser.add_argument("--labels-dir", type=Path, default=Path("labels/accepted"))
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--no-open", action="store_true")
@@ -192,7 +192,7 @@ def main() -> None:
     url = f"http://{arguments.host}:{server.server_port}"
     document = json.loads(server.labels_path.read_text())
     other_count = sum(label["label"] == "OTHER" for label in document["labels"])
-    print(f"Automatic suggestions: {len(document['labels'])} ({other_count} OTHER)")
+    print(f"Accepted labels: {len(document['labels'])} ({other_count} OTHER)")
     print(f"Saved labels: {server.labels_path}")
     print(f"Labeling viewer: {url}")
     if not arguments.no_open:

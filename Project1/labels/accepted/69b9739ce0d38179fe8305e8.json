@@ -1,0 +1,457 @@
+{
+  "schema_version": 2,
+  "episode_hash": "69b9739ce0d38179fe8305e8",
+  "fps": 30.0,
+  "frames": 2845,
+  "duration_seconds": 94.833333,
+  "class_labels": [
+    "PICK_UP",
+    "PLACE",
+    "MOVE",
+    "FOLD",
+    "SMOOTH",
+    "OTHER"
+  ],
+  "automatic_method": "annotation_text_rules_v1",
+  "created_at": "2026-08-19T05:48:56+00:00",
+  "updated_at": "2026-08-19T05:48:56+00:00",
+  "labels": [
+    {
+      "id": "auto-0-0",
+      "start_seconds": 0.0,
+      "end_seconds": 3.2,
+      "start_frame": 0,
+      "end_frame_exclusive": 96,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 0,
+      "raw_annotation": "remove purple clothing from drawer",
+      "suggestion_text": "remove purple clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-1-0",
+      "start_seconds": 3.2,
+      "end_seconds": 5.1,
+      "start_frame": 96,
+      "end_frame_exclusive": 153,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 1,
+      "raw_annotation": "remove pink clothing from drawer",
+      "suggestion_text": "remove pink clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-2-0",
+      "start_seconds": 5.1,
+      "end_seconds": 7.5,
+      "start_frame": 153,
+      "end_frame_exclusive": 225,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 2,
+      "raw_annotation": "remove black clothing from drawer",
+      "suggestion_text": "remove black clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-3-0",
+      "start_seconds": 7.5,
+      "end_seconds": 11.3,
+      "start_frame": 225,
+      "end_frame_exclusive": 339,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 3,
+      "raw_annotation": "remove patterned clothing from drawer",
+      "suggestion_text": "remove patterned clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-4-0",
+      "start_seconds": 11.3,
+      "end_seconds": 14.4,
+      "start_frame": 339,
+      "end_frame_exclusive": 432,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 4,
+      "raw_annotation": "remove white clothing from drawer",
+      "suggestion_text": "remove white clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-5-0",
+      "start_seconds": 14.4,
+      "end_seconds": 18.0,
+      "start_frame": 432,
+      "end_frame_exclusive": 540,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 5,
+      "raw_annotation": "remove blue clothing from drawer, remove black clothing from drawer",
+      "suggestion_text": "remove blue clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-5-1",
+      "start_seconds": 18.0,
+      "end_seconds": 21.6,
+      "start_frame": 540,
+      "end_frame_exclusive": 648,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 5,
+      "raw_annotation": "remove blue clothing from drawer, remove black clothing from drawer",
+      "suggestion_text": "remove black clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-6-0",
+      "start_seconds": 21.6,
+      "end_seconds": 26.3,
+      "start_frame": 648,
+      "end_frame_exclusive": 789,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 6,
+      "raw_annotation": "remove white clothing from drawer",
+      "suggestion_text": "remove white clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-7-0",
+      "start_seconds": 26.3,
+      "end_seconds": 27.85,
+      "start_frame": 789,
+      "end_frame_exclusive": 836,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 7,
+      "raw_annotation": "remove maroon clothing from drawer, remove green clothing from drawer",
+      "suggestion_text": "remove maroon clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-7-1",
+      "start_seconds": 27.85,
+      "end_seconds": 29.4,
+      "start_frame": 836,
+      "end_frame_exclusive": 882,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 7,
+      "raw_annotation": "remove maroon clothing from drawer, remove green clothing from drawer",
+      "suggestion_text": "remove green clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-8-0",
+      "start_seconds": 29.4,
+      "end_seconds": 33.9,
+      "start_frame": 882,
+      "end_frame_exclusive": 1017,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 8,
+      "raw_annotation": "remove black clothing from drawer",
+      "suggestion_text": "remove black clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-9-0",
+      "start_seconds": 33.9,
+      "end_seconds": 35.85,
+      "start_frame": 1017,
+      "end_frame_exclusive": 1075,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 9,
+      "raw_annotation": "remove red clothing from drawer, remove maroon clothing from drawer",
+      "suggestion_text": "remove red clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-9-1",
+      "start_seconds": 35.85,
+      "end_seconds": 37.8,
+      "start_frame": 1075,
+      "end_frame_exclusive": 1134,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 9,
+      "raw_annotation": "remove red clothing from drawer, remove maroon clothing from drawer",
+      "suggestion_text": "remove maroon clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-10-0",
+      "start_seconds": 37.8,
+      "end_seconds": 41.2,
+      "start_frame": 1134,
+      "end_frame_exclusive": 1236,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 10,
+      "raw_annotation": "remove black clothing from drawer",
+      "suggestion_text": "remove black clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-11-0",
+      "start_seconds": 41.2,
+      "end_seconds": 43.0,
+      "start_frame": 1236,
+      "end_frame_exclusive": 1290,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 11,
+      "raw_annotation": "remove blue clothing from drawer",
+      "suggestion_text": "remove blue clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-12-0",
+      "start_seconds": 43.0,
+      "end_seconds": 44.5,
+      "start_frame": 1290,
+      "end_frame_exclusive": 1335,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 12,
+      "raw_annotation": "remove white clothing from drawer, remove black clothing from drawer",
+      "suggestion_text": "remove white clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-12-1",
+      "start_seconds": 44.5,
+      "end_seconds": 46.0,
+      "start_frame": 1335,
+      "end_frame_exclusive": 1380,
+      "label": "PICK_UP",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 12,
+      "raw_annotation": "remove white clothing from drawer, remove black clothing from drawer",
+      "suggestion_text": "remove black clothing from drawer",
+      "matched_terms": [
+        "remove"
+      ]
+    },
+    {
+      "id": "auto-13-0",
+      "start_seconds": 46.0,
+      "end_seconds": 51.8,
+      "start_frame": 1380,
+      "end_frame_exclusive": 1554,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 13,
+      "raw_annotation": "fold black clothing, place black clothing in drawer",
+      "suggestion_text": "fold black clothing",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-13-1",
+      "start_seconds": 51.8,
+      "end_seconds": 57.6,
+      "start_frame": 1554,
+      "end_frame_exclusive": 1728,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 13,
+      "raw_annotation": "fold black clothing, place black clothing in drawer",
+      "suggestion_text": "place black clothing in drawer",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-14-0",
+      "start_seconds": 57.6,
+      "end_seconds": 75.0,
+      "start_frame": 1728,
+      "end_frame_exclusive": 2250,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 14,
+      "raw_annotation": "place package in drawer",
+      "suggestion_text": "place package in drawer",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-15-0",
+      "start_seconds": 75.0,
+      "end_seconds": 80.6,
+      "start_frame": 2250,
+      "end_frame_exclusive": 2418,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 15,
+      "raw_annotation": "fold red clothing, place red clothing in drawer",
+      "suggestion_text": "fold red clothing",
+      "matched_terms": [
+        "fold"
+      ]
+    },
+    {
+      "id": "auto-15-1",
+      "start_seconds": 80.6,
+      "end_seconds": 86.2,
+      "start_frame": 2418,
+      "end_frame_exclusive": 2586,
+      "label": "PLACE",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": true,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 15,
+      "raw_annotation": "fold red clothing, place red clothing in drawer",
+      "suggestion_text": "place red clothing in drawer",
+      "matched_terms": [
+        "place"
+      ]
+    },
+    {
+      "id": "auto-16-0",
+      "start_seconds": 86.2,
+      "end_seconds": 94.8,
+      "start_frame": 2586,
+      "end_frame_exclusive": 2844,
+      "label": "FOLD",
+      "custom_label": "",
+      "active_hands": [],
+      "uncertain": false,
+      "accepted": true,
+      "source": "automatic_text_rule",
+      "raw_annotation_index": 16,
+      "raw_annotation": "fold maroon clothing",
+      "suggestion_text": "fold maroon clothing",
+      "matched_terms": [
+        "fold"
+      ]
+    }
+  ]
+}

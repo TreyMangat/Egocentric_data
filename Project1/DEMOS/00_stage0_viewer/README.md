@@ -12,4 +12,4 @@ python inspect_episode.py `
 
 `rgb.mp4` is copied here locally but excluded from Git. Download the episode first using the command in the project README if it is missing.
 
-To edit and persist the automatic suggestions, run the `label_episode.py` command in the project README. The static demo remains read-only.
+To edit the accepted automatic labels, run the `label_episode.py` command in the project README. The static demo remains read-only.
